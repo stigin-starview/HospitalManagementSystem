@@ -11,15 +11,17 @@ public class Database {
         private int age;
 
 
-        public Database() throws SQLException {
-            Connection db = DriverManager.getConnection("jdbc:mysql://localhost:3306/HospitalDatabase","root","571612");
-            this.db = db;
-        }
+//        public Database() throws SQLException {
+//            Connection db = DriverManager.getConnection("jdbc:mysql://localhost:3306/HospitalDatabase","root","571612");
+//            this.db = db;
+//        }
 
         public void addEmployeeDb(String firstName, String lastName, int age,
                                   String phoneNumber, String email, String id,
                                   String department, String employeeType, String date,
                                   String status, String username, String password) throws SQLException {
+            Connection db = DriverManager.getConnection("jdbc:mysql://localhost:3306/HospitalDatabase","root","571612");
+            this.db = db;
             String query = " INSERT INTO employees VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement stat = db.prepareStatement(query);
             stat.setString(1, id);

@@ -49,9 +49,7 @@ CREATE TABLE Employees (
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="bc1237be-654e-46e5-b4b8-d7f206d8a211" object-ref="consoles/HospitalManagementSystem" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="bc1237be-654e-46e5-b4b8-d7f206d8a211" />

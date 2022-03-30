@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import com.database.Database;
+import com.database.*;
 
 public class AddEmployee extends JFrame {
     private JPanel addEmployeePanel;
@@ -31,7 +31,7 @@ public class AddEmployee extends JFrame {
 
     Database dat = new Database();
 
-    public AddEmployee() throws SQLException {
+    public AddEmployee(){
         setTitle("Add Employee");
         setContentPane(addEmployeePanel);
         setMinimumSize(new Dimension(1000,600));
@@ -71,9 +71,10 @@ public class AddEmployee extends JFrame {
                 phoneNumber = phoneField.getText();
                 age = Integer.parseInt(ageField.getText());
 
+
                 try {
                     dat.addEmployeeDb(firstName, lastName, age, phoneNumber, email, id, department,
-                                    employeeType, date, status, username, password);
+                                        employeeType, date, status, username, password);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

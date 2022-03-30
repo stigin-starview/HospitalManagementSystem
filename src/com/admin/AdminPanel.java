@@ -24,11 +24,8 @@ public class AdminPanel extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                try {
-                    new AddEmployee();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+                new AddEmployee();
+
             }
         });
     }
