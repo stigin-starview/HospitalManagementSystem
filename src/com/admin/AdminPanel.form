@@ -16,28 +16,28 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="2a89c" class="javax.swing.JButton" binding="addStaffButton" default-binding="true">
+          <component id="2a89c" class="javax.swing.JButton" binding="addEmployeeButton">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Add Staff"/>
+              <text value="Add Employee"/>
             </properties>
           </component>
-          <component id="9b5c1" class="javax.swing.JButton" binding="removeStaffButton" default-binding="true">
+          <component id="9b5c1" class="javax.swing.JButton" binding="removeEmployeeButton" default-binding="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Remove Staff"/>
+              <text value="Remove Employee"/>
             </properties>
           </component>
-          <component id="47308" class="javax.swing.JButton" binding="listStaffButton" default-binding="true">
+          <component id="47308" class="javax.swing.JButton" binding="listEmployeeButton" default-binding="true">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="List staff"/>
+              <text value="List Employee"/>
             </properties>
           </component>
           <vspacer id="9c5ca">

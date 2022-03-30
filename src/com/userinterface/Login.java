@@ -8,10 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
-    private JPasswordField Password;
+    private JPasswordField passwordField;
     private JButton loginButton;
     private JButton clearButton;
-    private JTextField textField1;
+    private JTextField usernameField;
     private JPanel LoginPanel;
     private String staffType;
 
@@ -36,11 +36,18 @@ public class Login extends JFrame {
                 }
             }
         });
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usernameField.setText("");
+                passwordField.setText("");
+            }
+        });
     }
 
 
-//    public JPanel loginPanel() {
-//        return LoginPanel;
-//    }
+    public JPanel getLoginPanel() {
+        return LoginPanel;
+    }
 }
 
