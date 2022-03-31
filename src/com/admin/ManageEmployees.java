@@ -3,10 +3,14 @@ package com.admin;
 import com.database.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class ManageEmployees extends JFrame{
     private JTable employeesTable;
@@ -26,8 +30,7 @@ public class ManageEmployees extends JFrame{
         setContentPane(manageEmployeesPanel);
         setMinimumSize(new Dimension(1000,600));
         setLocation(500,200);
-//        JScrollPane scroll = new JScrollPane(employeesTable);
-//        employeesTable.setVisible(true);
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
@@ -41,18 +44,21 @@ public class ManageEmployees extends JFrame{
 
     public void manageEmployeesTable() throws SQLException {
 
+
        employeesResultSet = dat.listEmployeesDb();
        resultSetMetaData = employeesResultSet.getMetaData();
-       DefaultTableModel tableModel = (DefaultTableModel) employeesTable.getModel();
        int cols = resultSetMetaData.getColumnCount();
+       DefaultTableModel tableModel = (DefaultTableModel) employeesTable.getModel();
        String[] colName = new String[cols];
 
-       for(int i=0; i < cols; i++) {
-           colName[i] = resultSetMetaData.getColumnName(i + 1);
-           System.out.println(colName[i]);
-       }
 
+        for(int i=0; i < cols; i++) {
+           colName[i] = resultSetMetaData.getColumnName(i + 1);
+//           System.out.println(colName[i]);
+       }
        tableModel.setColumnIdentifiers(colName);
+//        tableModel.addRow(colName);
+
 
 
         while(employeesResultSet.next()) {
@@ -72,7 +78,8 @@ public class ManageEmployees extends JFrame{
             String[] row = {id, firstName, lastName, age, email, phoneNumber,
                             department, employeeType, date, username, password, status};
             tableModel.addRow(row);
-        }
+        }// while loop ends.
+
         dat.dbClose();
 
 
