@@ -4,12 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class AdminPanel extends JFrame{
     private JButton addEmployeeButton;
-    private JButton removeEmployeeButton;
-    private JButton listEmployeeButton;
+    private JButton manageEmployeesButton;
+    private JButton adminSettingsButton;
     private JPanel AdminPanel;
 
     public AdminPanel() {
@@ -26,6 +25,14 @@ public class AdminPanel extends JFrame{
                 setVisible(false);
                 new AddEmployee();
 
+            }
+        });
+
+        manageEmployeesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new ManageEmployees();
             }
         });
     }

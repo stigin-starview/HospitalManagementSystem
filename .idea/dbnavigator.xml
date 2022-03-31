@@ -28,24 +28,26 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="bc1237be-654e-46e5-b4b8-d7f206d8a211">
-      <console name="HospitalManagementSystem" type="STANDARD" schema="mysql" session="Main"><![CDATA[CREATE DATABASE HospitalDatabase;
+      <console name="HospitalManagementSystem" type="STANDARD" schema="hospitaldatabase" session="Main"><![CDATA[--CREATE DATABASE HospitalDatabase;
 use HospitalDatabase;
+--
+--CREATE TABLE Employees (
+--    EmployeeID varchar(255),
+--    FirstName varchar(255),
+--    LastName varchar(255),
+--    Age int,
+--    Email varchar(255),
+--    PhoneNumber varchar(255),
+--    Department varchar(255),
+--    EmployeeType varchar(255),
+--    HireDate varchar(255),
+--    Username varchar(255),
+--    Password varchar(255),
+--    status varchar(255)
+--    
+--);
 
-CREATE TABLE Employees (
-    EmployeeID varchar(255),
-    FirstName varchar(255),
-    LastName varchar(255),
-    Age int,
-    Email varchar(255),
-    PhoneNumber varchar(255),
-    Department varchar(255),
-    EmployeeType varchar(255),
-    HireDate varchar(255),
-    Username varchar(255),
-    Password varchar(255),
-    status varchar(255)
-    
-);]]></console>
+SELECT * FROM employees;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

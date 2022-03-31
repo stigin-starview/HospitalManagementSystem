@@ -43,16 +43,8 @@ public class AddEmployee extends JFrame {
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                  firstNameField.setText("");
-                  secondNameField.setText("");
-                  ageField.setText("");
-                  phoneField.setText("");
-                  emailField.setText("");
-                  idField.setText("");
-                  dateField.setText("");
-                  userNameField.setText("");
-                  passwordField.setText("");
 
+                clearMethod();
             }
         });
         addEmployeeButton.addActionListener(new ActionListener() {
@@ -80,7 +72,27 @@ public class AddEmployee extends JFrame {
                 }
 
 
+                //Pop up message;
+                JOptionPane.showMessageDialog(null,"Employee Added to the Database.", "Sucessful",1);
+
+                clearMethod();
+
+
+
             }
         });
+
+
+        }
+        private void clearMethod() {
+        firstNameField.setText("");
+        secondNameField.setText("");
+        ageField.setText("");
+        phoneField.setText("");
+        emailField.setText("");
+        idField.setText("");
+        dateField.setText("");
+        userNameField.setText("");
+        passwordField.setText("");
     }
 }
