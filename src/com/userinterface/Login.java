@@ -20,7 +20,7 @@ public class Login extends JFrame {
         setTitle("login");
 //        setSize(1000,600);
         setContentPane(LoginPanel);
-        setMinimumSize(new Dimension(1000,600));
+        setMinimumSize(new Dimension(1100,600));
         setLocation(500,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);

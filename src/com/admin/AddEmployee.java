@@ -34,7 +34,7 @@ public class AddEmployee extends JFrame {
     public AddEmployee(){
         setTitle("Add Employee");
         setContentPane(addEmployeePanel);
-        setMinimumSize(new Dimension(1000,600));
+        setMinimumSize(new Dimension(1100,600));
         setLocation(500,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);

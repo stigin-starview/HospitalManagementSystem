@@ -3,14 +3,10 @@ package com.admin;
 import com.database.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.Vector;
 
 public class ManageEmployees extends JFrame{
     private JTable employeesTable;
@@ -24,15 +20,18 @@ public class ManageEmployees extends JFrame{
     private String firstName, lastName, email, username, password,
             department, employeeType, date, status, phoneNumber, id,age;
 
+    private String[] colName;
+    private String[] row;
+
     Database dat = new Database();
     public ManageEmployees() {
         setTitle("Manage Employees");
         setContentPane(manageEmployeesPanel);
-        setMinimumSize(new Dimension(1000,600));
+        setMinimumSize(new Dimension(1100,600));
         setLocation(500,200);
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
 
         try {
             manageEmployeesTable();
@@ -44,7 +43,7 @@ public class ManageEmployees extends JFrame{
 
     public void manageEmployeesTable() throws SQLException {
 
-
+        // getting information from database
        employeesResultSet = dat.listEmployeesDb();
        resultSetMetaData = employeesResultSet.getMetaData();
        int cols = resultSetMetaData.getColumnCount();
@@ -54,10 +53,17 @@ public class ManageEmployees extends JFrame{
 
         for(int i=0; i < cols; i++) {
            colName[i] = resultSetMetaData.getColumnName(i + 1);
-//           System.out.println(colName[i]);
+           colName[i].toUpperCase();
        }
        tableModel.setColumnIdentifiers(colName);
-//        tableModel.addRow(colName);
+        // Adding column and header failed after multiple attempts.
+        // now adding formatted string as rows that represents table header.
+        tableModel.addRow(colName);
+
+
+
+
+
 
 
 
@@ -82,10 +88,6 @@ public class ManageEmployees extends JFrame{
 
         dat.dbClose();
 
-
-
-
-
-
     }
+
 }
