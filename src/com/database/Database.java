@@ -29,6 +29,7 @@ public class Database {
 
             // Adding the employee details.
             String query = " INSERT INTO employees VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            // check below 2 lines.
             preStat = db.prepareStatement(query);
             this.preStat = preStat;
             preStat.setString(1, id);
@@ -56,7 +57,6 @@ public class Database {
             stat = db.createStatement();
             String query = "SELECT * FROM employees";
             ResultSet employeesResultSet = stat.executeQuery(query);
-            ResultSetMetaData employeesMeta = employeesResultSet.getMetaData();
             return employeesResultSet;
 
         }
@@ -70,10 +70,86 @@ public class Database {
 
         }
 
+        // Get the names of all the doctors.
+        public ResultSet getDoctorsDb() throws SQLException {
+            connectionInit();
+            stat = db.createStatement();
+            String query = "SELECT  firstname, lastname FROM employees where department = 'Doctor' ";
+            ResultSet doctorsResultSet = stat.executeQuery(query);
+            return doctorsResultSet;
+        }
+
+
+
+        // getting count of selected employees //------------------ not working
+//        public ResultSet getEmployeeCountDb(String employee) throws SQLException {
+//            connectionInit();
+//            String query = "SELECT * FROM employees WHERE Department=?";
+//            preStat = db.prepareStatement(query);
+//            preStat.setString(1, employee);
+//            ResultSet employeeCountResultSet = preStat.executeQuery();
+//
+//            employeeCountResultSet.next();
+//            System.out.println(employeeCountResultSet.getRow());
+//            employeeCountResultSet.beforeFirst();
+//            return employeeCountResultSet;
+//
+//    }
+
+    /* Methods for patient Database Functions */
+
+    // Adding patient details
+    public void addPatientDB(String firstName, String lastName, int age,
+                             String phoneNumber, String email, String id,
+                             String date, String doctor, String medicine, String remark) throws SQLException {
+        connectionInit();
+
+        // Adding the patients details.
+        String query = " INSERT INTO patients VALUES (?,?,?,?,?,?,?,?,?,?)";
+        // check below 2 lines.
+        preStat = db.prepareStatement(query);
+//        this.preStat = preStat;
+        preStat.setString(1, firstName);
+        preStat.setString(2, lastName);
+        preStat.setInt(3, age);
+        preStat.setString(4, email);
+        preStat.setString(5, phoneNumber);
+        preStat.setString(6, date);
+        preStat.setString(7, id);
+        preStat.setString(8, doctor);
+        preStat.setString(9, medicine);
+        preStat.setString(10, remark);
+        preStat.executeUpdate();
+        preStat.close();
+        db.close();
+
+    }
+
+
+    //get id from database
+    public ResultSet getPatientIdDb() throws SQLException {
+        connectionInit();
+        String query = "SELECT id FROM patients";
+        ResultSet patientIdResultSet = stat.executeQuery(query);
+        return patientIdResultSet;
+
+    }
+
+        // close all the opened databases.
         public void dbClose() throws SQLException {
 
-            stat.close();
-            db.close();
+            if(this.stat == null) {
+                preStat.close();
+                db.close();
+            }
+            else if (this.stat == null || this.preStat == null) {
+                db.close();
+            }
+            else {
+                stat.close();
+                preStat.close();
+                db.close();
+            }
         }
 
 }

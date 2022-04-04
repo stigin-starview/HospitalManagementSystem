@@ -1,11 +1,12 @@
 package com.userinterface;
-
+import com.reception.AddPatient;
 import com.admin.AdminPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class Login extends JFrame {
     private JPasswordField passwordField;
@@ -33,6 +34,14 @@ public class Login extends JFrame {
                 if (staffType == "admin") {
                     setVisible(false);
                     new AdminPanel();
+                }
+                else if(staffType == "reception") {
+                    setVisible(false);
+                    try {
+                        new AddPatient();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         });

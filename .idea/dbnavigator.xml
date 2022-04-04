@@ -31,27 +31,47 @@
       <console name="HospitalManagementSystem" type="STANDARD" schema="hospitaldatabase" session="Main"><![CDATA[--CREATE DATABASE HospitalDatabase;
 use HospitalDatabase;
 --
---CREATE TABLE Employees (
---    EmployeeID varchar(255),
---    FirstName varchar(255),
---    LastName varchar(255),
---    Age int,
---    Email varchar(255),
---    PhoneNumber varchar(255),
---    Department varchar(255),
---    EmployeeType varchar(255),
---    HireDate varchar(255),
---    Username varchar(255),
---    Password varchar(255),
---    status varchar(255)
---    
---);
+CREATE TABLE Employees (
+    ID varchar(255),
+    FirstName varchar(255),
+    LastName varchar(255),
+    Age int,
+    Email varchar(255),
+    PhoneNumber varchar(255),
+    Department varchar(255),
+    EmployeeType varchar(255),
+    HireDate varchar(255),
+    Username varchar(255),
+    Password varchar(255),
+    status varchar(255)
 
-SELECT * FROM employees;]]></console>
+);
+
+--SELECT * FROM employees;
+
+
+CREATE TABLE patients (
+    FirstName varchar(255),
+    LastName varchar(255),
+    Age int,
+    Email varchar(255),
+    PhoneNumber varchar(255),
+    AdmitDate varchar(255),
+    ID varchar(255),
+    Doctor varchar(255),
+    Medicine MEDIUMTEXT,
+    Remark LONGTEXT
+    );
+
+SHOW DATABASES;
+
+SELECT COUNT(*) department FROM employees WHERE Department = 'Administrator';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="bc1237be-654e-46e5-b4b8-d7f206d8a211" object-ref="consoles/HospitalManagementSystem" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="bc1237be-654e-46e5-b4b8-d7f206d8a211" />

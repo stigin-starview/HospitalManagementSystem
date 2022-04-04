@@ -1,3 +1,7 @@
+// ADDING A NEW TABLE WITH PREDEFINED HEADER AND ROW IS NEEDED FOR THE EMPLOYEE UPDATE METHOD TO WORK !!!!!!
+
+
+
 package com.admin;
 
 import com.database.*;
@@ -7,6 +11,7 @@ import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class ManageEmployees extends JFrame{
     private JTable employeesTable;
@@ -27,11 +32,12 @@ public class ManageEmployees extends JFrame{
     public ManageEmployees() {
         setTitle("Manage Employees");
         setContentPane(manageEmployeesPanel);
-        setMinimumSize(new Dimension(1100,600));
+        setMinimumSize(new Dimension(1150,600));
         setLocation(500,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+        // WHY THERE IS A SEPERATE FUNCTION?? ( manageEmployeesTable )
 
         try {
             manageEmployeesTable();
@@ -49,23 +55,17 @@ public class ManageEmployees extends JFrame{
        int cols = resultSetMetaData.getColumnCount();
        DefaultTableModel tableModel = (DefaultTableModel) employeesTable.getModel();
        String[] colName = new String[cols];
-
+        String tempString;
 
         for(int i=0; i < cols; i++) {
-           colName[i] = resultSetMetaData.getColumnName(i + 1);
-           colName[i].toUpperCase();
+            tempString = resultSetMetaData.getColumnName(i + 1);
+            colName[i] = tempString.toUpperCase();
+
        }
        tableModel.setColumnIdentifiers(colName);
         // Adding column and header failed after multiple attempts.
         // now adding formatted string as rows that represents table header.
         tableModel.addRow(colName);
-
-
-
-
-
-
-
 
         while(employeesResultSet.next()) {
             id = employeesResultSet.getString(1);

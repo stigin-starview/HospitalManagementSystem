@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.database.*;
@@ -30,6 +31,7 @@ public class AddEmployee extends JFrame {
     private int age;
 
     Database dat = new Database();
+    ResultSet employeeCountResultSet;
 
     public AddEmployee(){
         setTitle("Add Employee");
@@ -82,8 +84,74 @@ public class AddEmployee extends JFrame {
             }
         });
 
+    /*    departmentBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String depName = String.valueOf(departmentBox.getSelectedItem());
+//                System.out.println(test);
+                String num;
+                String idNum;
+                if (depName == "Doctor") {
+                    try {
+                        employeeCountResultSet = dat.getEmployeeCountDb("'Doctor'");
+                        employeeCountResultSet.next();
+                        num = employeeCountResultSet.getString(1);
+                        idNum = "DOC_00"+num;
+                        idField.setText(idNum);
+                        dat.dbClose();
 
-        }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+
+                }
+                else if(depName == "Administrator") {
+                    try {
+                        employeeCountResultSet = dat.getEmployeeCountDb("'Administrator'");
+                        employeeCountResultSet.next();
+                        num = employeeCountResultSet.getString(1);
+                        idNum = "ADMIN_00"+num;
+                        idField.setText(idNum);
+                        dat.dbClose();
+
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+                else if(depName == "Pharmacy") {
+                    try {
+                        employeeCountResultSet = dat.getEmployeeCountDb("'Pharmacy'");
+                        employeeCountResultSet.next();
+                        num = employeeCountResultSet.getString(1);
+                        idNum = "PHAR_00"+num;
+                        idField.setText(idNum);
+                        dat.dbClose();
+
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+                else
+                {
+                    try {
+                        employeeCountResultSet = dat.getEmployeeCountDb("'Reception'");
+                        employeeCountResultSet.next();
+                        num = employeeCountResultSet.getString(1);
+                        idNum = "RECEP_00"+num;
+                        idField.setText(idNum);
+                        dat.dbClose();
+
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            }
+        }); */
+    }
         private void clearMethod() {
         firstNameField.setText("");
         secondNameField.setText("");
