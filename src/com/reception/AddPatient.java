@@ -109,8 +109,13 @@ public class AddPatient extends JFrame{
     private void getPatientNumber() throws SQLException {
         //get patient number.
         patientIdResultSet = db.getPatientIdDb();
-        idResultSetMeta = patientIdResultSet.getMetaData();
-        String idNumber = "000" + patientIdResultSet.getRow();
+//        idResultSetMeta = patientIdResultSet.getMetaData();
+        int num = 1;
+        while (patientIdResultSet.next()) {
+            num++;
+        }
+
+        String idNumber = "000" + num;
         idField.setText(idNumber);
     }
 

@@ -135,7 +135,6 @@ public class Database {
         String query = "SELECT id FROM patients";
         ResultSet patientIdResultSet = stat.executeQuery(query);
         return patientIdResultSet;
-
     }
 
 
