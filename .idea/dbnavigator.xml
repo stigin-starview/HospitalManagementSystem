@@ -50,28 +50,34 @@ CREATE TABLE Employees (
 --SELECT * FROM employees;
 
 
-CREATE TABLE patients (
-    FirstName varchar(255),
-    LastName varchar(255),
-    Age int,
-    Email varchar(255),
-    PhoneNumber varchar(255),
-    AdmitDate varchar(255),
-    ID varchar(255),
-    Doctor varchar(255),
-    Medicine MEDIUMTEXT,
-    Remark LONGTEXT
-    );
+--CREATE TABLE patients (
+--    FirstName varchar(255),
+--    LastName varchar(255),
+--    Age int,
+--    Email varchar(255),
+--    PhoneNumber varchar(255),
+--    AdmitDate varchar(255),
+--    ID varchar(255),
+--    Doctor varchar(255),
+--    Medicine MEDIUMTEXT,
+--    Remark LONGTEXT
+--    );
 
 SHOW DATABASES;
 
-SELECT COUNT(*) department FROM employees WHERE Department = 'Administrator';]]></console>
+SELECT COUNT(*) department FROM employees WHERE Department = 'Administrator';
+
+
+CREATE TABLE pharmacy (
+name varchar(255),
+serial_no varchar(255),
+no_of_medicines int,
+stock_date varchar(255) 
+);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="bc1237be-654e-46e5-b4b8-d7f206d8a211" object-ref="consoles/HospitalManagementSystem" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="bc1237be-654e-46e5-b4b8-d7f206d8a211" />

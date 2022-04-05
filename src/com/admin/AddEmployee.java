@@ -40,6 +40,7 @@ public class AddEmployee extends JFrame {
         setLocation(500,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        dateField.setText(dat.getDate());
 
 
         clearButton.addActionListener(new ActionListener() {

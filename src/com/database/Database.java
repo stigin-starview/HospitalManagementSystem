@@ -2,6 +2,11 @@ package com.database;
 
 import java.sql.*;
 
+// packages for getting the current date.
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
 
 public class Database {
         private Connection db;
@@ -120,9 +125,7 @@ public class Database {
         preStat.setString(9, medicine);
         preStat.setString(10, remark);
         preStat.executeUpdate();
-        preStat.close();
-        db.close();
-
+        dbClose();
     }
 
 
@@ -132,6 +135,23 @@ public class Database {
         String query = "SELECT id FROM patients";
         ResultSet patientIdResultSet = stat.executeQuery(query);
         return patientIdResultSet;
+
+    }
+
+
+    // Adding medicine
+    public void addMedicineDb(String name, String serialNo, int noOfMedicines, String stockDate) throws SQLException {
+
+        String query = "INSERT INTO pharmacy VALUES (?,?,?,?)";
+        connectionInit();
+        preStat = db.prepareStatement(query);
+
+        preStat.setString(1, name);
+        preStat.setString(2, serialNo);
+        preStat.setInt(3, noOfMedicines);
+        preStat.setString(4, stockDate);
+        preStat.executeUpdate();
+        dbClose();
 
     }
 
@@ -152,5 +172,12 @@ public class Database {
             }
         }
 
+    //get the current system date.
+    public String getDate() {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar obj = Calendar.getInstance();
+        String date = formatter.format(obj.getTime());
+        return date;
+    }
 }
 

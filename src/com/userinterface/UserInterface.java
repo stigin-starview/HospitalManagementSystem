@@ -38,6 +38,14 @@ public class UserInterface extends JFrame {
                 new Login("reception");
             }
         });
+
+        pharmacyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new Login("pharmacy");
+            }
+        });
     }
 
     public static void main(String[] args) {

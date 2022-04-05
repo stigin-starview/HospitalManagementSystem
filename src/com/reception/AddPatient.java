@@ -40,6 +40,7 @@ public class AddPatient extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+        dateField.setText(db.getDate());
         //retrieving the details of the doctors
 
         doctorsResultSet = db.getDoctorsDb();
@@ -73,10 +74,7 @@ public class AddPatient extends JFrame{
                 date = dateField.getText();
                 doctor = doctorBox.getSelectedItem().toString();
                 phoneNumber = phoneNumberField.getText();
-                age = ageField.getColumns();
-                System.out.println(age);
-//                medicine = "NILL";
-//                remark = "NILL";
+                age = Integer.parseInt(ageField.getText());
 
 
                 try {

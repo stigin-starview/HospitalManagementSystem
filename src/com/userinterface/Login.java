@@ -1,4 +1,5 @@
 package com.userinterface;
+import com.pharmacy.PharmacyPanel;
 import com.reception.AddPatient;
 import com.admin.AdminPanel;
 
@@ -31,20 +32,26 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // searching login credentials in separate tables for each type
+                setVisible(false);
                 if (staffType == "admin") {
-                    setVisible(false);
+
                     new AdminPanel();
                 }
                 else if(staffType == "reception") {
-                    setVisible(false);
+
                     try {
                         new AddPatient();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
+
+                }
+                else if(staffType == "pharmacy"){
+                    new PharmacyPanel();
                 }
             }
         });
+
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
