@@ -155,6 +155,15 @@ public class Database {
 
     }
 
+    // Retrieving medicine details
+    public ResultSet getMedicineList() throws SQLException {
+        connectionInit();
+        stat = db.createStatement();
+        String query = "SELECT * FROM pharmacy";
+        ResultSet medicinesResultSet = stat.executeQuery(query);
+        return medicinesResultSet;
+    }
+
         // close all the opened databases.
         public void dbClose() throws SQLException {
 

@@ -189,7 +189,7 @@
               <model>
                 <item value="Trainee"/>
                 <item value="Temporary"/>
-                <item value="Permanant"/>
+                <item value="Permanent"/>
               </model>
             </properties>
           </component>

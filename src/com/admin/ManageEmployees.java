@@ -7,10 +7,13 @@ package com.admin;
 import com.database.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class ManageEmployees extends JFrame{
@@ -62,10 +65,11 @@ public class ManageEmployees extends JFrame{
             colName[i] = tempString.toUpperCase();
 
        }
+        /* after surrounding the table with jscrollpane in the gui form
+        the table header started working.*/
        tableModel.setColumnIdentifiers(colName);
-        // Adding column and header failed after multiple attempts.
-        // now adding formatted string as rows that represents table header.
-        tableModel.addRow(colName);
+
+
 
         while(employeesResultSet.next()) {
             id = employeesResultSet.getString(1);

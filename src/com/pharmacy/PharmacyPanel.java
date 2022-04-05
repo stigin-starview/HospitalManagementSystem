@@ -25,5 +25,12 @@ public class PharmacyPanel extends JFrame{
                 new AddMedicine();
             }
         });
+        listMedicineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new ManageMedicine();
+            }
+        });
     }
 }
