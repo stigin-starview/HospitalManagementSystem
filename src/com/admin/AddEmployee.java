@@ -78,6 +78,7 @@ public class AddEmployee extends JFrame {
                 //Pop up message;
                 JOptionPane.showMessageDialog(null,"Employee Added to the Database.", "Sucessful",1);
 
+
                 clearMethod();
 
 

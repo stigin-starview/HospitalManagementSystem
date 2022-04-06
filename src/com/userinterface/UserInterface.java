@@ -46,6 +46,13 @@ public class UserInterface extends JFrame {
                 new Login("pharmacy");
             }
         });
+        doctorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new Login("doctor");
+            }
+        });
     }
 
     public static void main(String[] args) {

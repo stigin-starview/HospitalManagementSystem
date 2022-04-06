@@ -24,6 +24,24 @@ public class Database {
             this.db = db;
         }
 
+        public ResultSet doctorPasswordDb(String username, String Password) throws SQLException {
+            connectionInit();
+            String query = "SELECT firstname, lastname FROM employees WHERE username=? AND password=?";
+            preStat = db.prepareStatement(query);
+            preStat.setString(1, username);
+            System.out.println(username);
+            preStat.setString(2, password);
+            System.out.println(password);
+            ResultSet doctor = preStat.executeQuery();
+            while(doctor.next()) {
+                System.out.println(doctor.getString(1) +"name");
+            }
+            return doctor;
+
+        }
+
+
+
         // Add employee method
         public void addEmployeeDb(String firstName, String lastName, int age,
                                   String phoneNumber, String email, String id,
@@ -36,7 +54,7 @@ public class Database {
             String query = " INSERT INTO employees VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             // check below 2 lines.
             preStat = db.prepareStatement(query);
-            this.preStat = preStat;
+//            this.preStat = preStat;
             preStat.setString(1, id);
             preStat.setString(2, firstName);
             preStat.setString(3, lastName);
