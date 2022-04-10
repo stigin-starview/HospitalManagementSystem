@@ -2,6 +2,7 @@ package com.doctors;
 
 import com.database.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -77,6 +78,35 @@ public class Prescription extends JFrame{
                 }
             }
         });
+        // Adding medicine to patients database.
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String medicineName=null, beforeOrAfterFood =null;
+                medicineName = String.valueOf(medicineNameBox.getSelectedItem());
+                if(beforeFoodRadioButton.isSelected()) {
+                    beforeOrAfterFood = "Before food";
+                }
+                else if(afterFoodRadioButton.isSelected()) {
+                    beforeOrAfterFood = "After food";
+                }
+                String medicineInstruction = medicineName+"\nconsume: "+beforeOrAfterFood+"\nTime:";
+                if(morningCheckBox.isSelected()) {
+                    medicineInstruction = medicineInstruction+" morning";
+                }
+                if(noonCheckBox.isSelected()) {
+                    medicineInstruction = medicineInstruction+" noon";
+                }
+                if(nightCheckBox.isSelected()) {
+                    medicineInstruction = medicineInstruction+" night";
+                }
+
+
+                System.out.println(medicineInstruction);
+                db.add
+
+            }
+        });
     }
 
     private void patientInformation() throws SQLException {
@@ -86,11 +116,14 @@ public class Prescription extends JFrame{
         String[] split = patientName.split("\\s+");
         String firstName = split[0];
         String lastName = split[1];
-        ResultSet patientDetails = db.getAssignedPatientDetails(firstName, lastName);
-        patientDetails.next();
-        patientIdLabel.setText("ID: "+patientDetails.getString( 1));
-        patientAgeLabel.setText("Age: "+patientDetails.getString(2));
-        patientAdmitDateLabel.setText("Admission Date: "+patientDetails.getString(3));
-
+        ResultSet patientDetailsResultSet = db.getAssignedPatientDetailsDb(firstName, lastName);
+        patientDetailsResultSet.next();
+        patientIdLabel.setText("ID: "+patientDetailsResultSet.getString( 1));
+        patientAgeLabel.setText("Age: "+patientDetailsResultSet.getString(2));
+        patientAdmitDateLabel.setText("Admission Date: "+patientDetailsResultSet.getString(3));
+        DefaultTableModel medicineTableModel = (DefaultTableModel) medicineDetailsTable.getModel();
+        DefaultTableModel remarksTableModel = (DefaultTableModel) remarksTable.getModel();
+        medicineTableModel.addRow((Object[]) patientDetailsResultSet.getObject(4));
+        remarksTableModel.addRow((Object[]) patientDetailsResultSet.getObject(5));
     }
 }

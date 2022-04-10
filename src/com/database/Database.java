@@ -186,7 +186,7 @@ public class Database {
         return patients;
     }
 
-    public ResultSet getAssignedPatientDetails(String firstName, String lastName) throws SQLException {
+    public ResultSet getAssignedPatientDetailsDb(String firstName, String lastName) throws SQLException {
         String query = "SELECT id, age, admitdate, medicine, remark FROM patients WHERE firstname = ? AND lastname = ?";
         connectionInit();
         preStat = db.prepareStatement(query);
@@ -195,6 +195,13 @@ public class Database {
         ResultSet patientDetails = preStat.executeQuery();
         return patientDetails;
     }
+
+    // Add medicine to patient database
+    public addPatientMedicinedb(String medicine) {
+        String query = "UPDATE patients SET medicine = ? WHERE id = ?";
+
+    }
+
         // close all the opened databases.
         public void dbClose() throws SQLException {
 
