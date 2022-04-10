@@ -24,19 +24,13 @@ public class Database {
             this.db = db;
         }
 
-        public ResultSet doctorPasswordDb(String username, String Password) throws SQLException {
+        public ResultSet employeePasswordDb(String staffType) throws SQLException {
             connectionInit();
-            String query = "SELECT firstname, lastname FROM employees WHERE username=? AND password=?";
+            String query = "SELECT id, firstname, lastname, username, password FROM employees WHERE department = ?";
             preStat = db.prepareStatement(query);
-            preStat.setString(1, username);
-            System.out.println(username);
-            preStat.setString(2, password);
-            System.out.println(password);
-            ResultSet doctor = preStat.executeQuery();
-            while(doctor.next()) {
-                System.out.println(doctor.getString(1) +"name");
-            }
-            return doctor;
+            preStat.setString(1, staffType);
+            ResultSet employee = preStat.executeQuery();
+            return employee;
 
         }
 

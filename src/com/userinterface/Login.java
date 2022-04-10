@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class Login extends JFrame {
     private JPasswordField passwordField;
@@ -46,13 +47,10 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // searching login credentials in separate tables for each type
 
-
-//                username = "'"+usernameField.getText()+"'";
-//                password = "'"+String.valueOf(passwordField.getPassword())+"'";
                 username = usernameField.getText();
-                String password1 = String.valueOf(passwordField.getPassword());
-               password = password1;
-                System.out.println(username + " \npass:" + password);
+                // securing the password.
+                char[] password = passwordField.getPassword();
+
                 if (staffType == "admin") {
                     setVisible(false);
                     new AdminPanel();
@@ -72,23 +70,24 @@ public class Login extends JFrame {
                     new PharmacyPanel();
                 }
                 else if(staffType == "doctor"){
-                    System.out.println("inside docotr else if");
-                    try {
-                        System.out.println("inside try");
-                        resultSet = db.doctorPasswordDb(username,password);
-                        System.out.println(resultSet.getRow());
-                        if (resultSet == null) {
-                            System.out.println("inside tru- if");
-                            JOptionPane.showMessageDialog(null,"Invalid username/Password.", "Login Failed",2);
-                            clearMethod();
-                            db.dbClose();
-                        }
-                        else{
-                            System.out.println("inside try else");
-                            setVisible(false);
-                            new Prescription();
 
+                    try {
+
+                        resultSet = db.employeePasswordDb(staffType);
+                        while(resultSet.next()) {
+
+                            // converting the resultset password into char array and comparing the fields
+                            if(username.equals(resultSet.getString(4)) && Arrays.equals(resultSet.getString(5).toCharArray(),password)) {
+                                JOptionPane.showMessageDialog(null,"Hello Dr."+resultSet.getString(2), "login successful",1);
+                                setVisible(false);
+                                new Prescription();
+                                break;
+                            }
                         }
+
+                        JOptionPane.showMessageDialog(null,"Invalid username/Password.", "Login Failed",2);
+                        clearMethod();
+                        db.dbClose();
 
                     } catch (SQLException ex) {
                         ex.printStackTrace();
