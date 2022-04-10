@@ -44,24 +44,14 @@ public class AddPatient extends JFrame{
         //retrieving the details of the doctors
 
         doctorsResultSet = db.getDoctorsDb();
-//        resultSetMetaData = doctorsResultSet.getMetaData();
-//        int cols = resultSetMetaData.getColumnCount();
-//        int i = 0;
-        ArrayList doctorName = new ArrayList();
 
         //adding individual list to arraylist
         while(doctorsResultSet.next()) {
 
-            doctorName.add(doctorsResultSet.getString(1) +" "+ doctorsResultSet.getString(2));
+            doctorBox.addItem(doctorsResultSet.getString(1) +" "+ doctorsResultSet.getString(2));
 
-        }
-        //itterate through each object to get the value and add to the box.
-        for(Object m:doctorName) {
-            doctorBox.addItem(m);
         }
         getPatientNumber();
-
-
 
         addPatientButton.addActionListener(new ActionListener() {
             @Override
@@ -125,8 +115,8 @@ public class AddPatient extends JFrame{
         ageField.setText("");
         phoneNumberField.setText("");
         emailField.setText("");
-        idField.setText("");
-        dateField.setText("");
+//        idField.setText("");
+//        dateField.setText("");
     }
 
     }

@@ -175,6 +175,26 @@ public class Database {
         return medicinesResultSet;
     }
 
+    // Getting assigned patient list for the selected doctor.
+
+    public ResultSet getAssignedPatients(String doctorName) throws SQLException {
+        String query = "SELECT firstname, lastname FROM patients WHERE doctor = ?";
+        connectionInit();
+        preStat = db.prepareStatement(query);
+        preStat.setString(1, doctorName);
+        ResultSet patients = preStat.executeQuery();
+        return patients;
+    }
+
+    public ResultSet getAssignedPatientDetails(String firstName, String lastName) throws SQLException {
+        String query = "SELECT id, age, admitdate, medicine, remark FROM patients WHERE firstname = ? AND lastname = ?";
+        connectionInit();
+        preStat = db.prepareStatement(query);
+        preStat.setString(1, firstName);
+        preStat.setString(2, lastName);
+        ResultSet patientDetails = preStat.executeQuery();
+        return patientDetails;
+    }
         // close all the opened databases.
         public void dbClose() throws SQLException {
 

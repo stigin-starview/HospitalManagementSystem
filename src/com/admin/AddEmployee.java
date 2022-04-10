@@ -129,8 +129,8 @@ public class AddEmployee extends JFrame {
         ageField.setText("");
         phoneField.setText("");
         emailField.setText("");
-        idField.setText("");
-        dateField.setText("");
+//        idField.setText("");
+//        dateField.setText("");
         userNameField.setText("");
         passwordField.setText("");
     }

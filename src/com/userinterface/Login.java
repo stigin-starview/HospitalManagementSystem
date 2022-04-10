@@ -50,49 +50,64 @@ public class Login extends JFrame {
                 username = usernameField.getText();
                 // securing the password.
                 char[] password = passwordField.getPassword();
+                String employeeName = null;
+                boolean employeeFound = false;
+                boolean masterAccess = false;
 
-                if (staffType == "admin") {
-                    setVisible(false);
-                    new AdminPanel();
+                //checking if master username and password is used
+                if (username.equals(masterUsername) && Arrays.equals(masterPassword.toCharArray(), password)) {
+                    masterAccess = true;
                 }
-                else if(staffType == "reception") {
+                else {
+                        try {
+                            resultSet = db.employeePasswordDb(staffType);
+                            while (resultSet.next()) {
 
-                    try {
-                        setVisible(false);
-                        new AddPatient();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
+                                // converting the resultset password into char array and comparing the fields
+                                if (username.equals(resultSet.getString(4)) && Arrays.equals(resultSet.getString(5).toCharArray(), password)) {
+                                    employeeName = resultSet.getString(2) + " " + resultSet.getString(3);
+                                    employeeFound = true;
+                                    break;
+                                }
+                            }
+                            if (employeeFound == false) {
+                                JOptionPane.showMessageDialog(null, "Invalid username/Password.", "Login Failed", 2);
+                                clearMethod();
+                                db.dbClose();
+
+                            }
+
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
                     }
 
-                }
-                else if(staffType == "pharmacy"){
+                if(employeeFound == true || masterAccess == true) {
                     setVisible(false);
-                    new PharmacyPanel();
-                }
-                else if(staffType == "doctor"){
 
-                    try {
+                    if (staffType == "admin") {
 
-                        resultSet = db.employeePasswordDb(staffType);
-                        while(resultSet.next()) {
+                        new AdminPanel();
 
-                            // converting the resultset password into char array and comparing the fields
-                            if(username.equals(resultSet.getString(4)) && Arrays.equals(resultSet.getString(5).toCharArray(),password)) {
-                                JOptionPane.showMessageDialog(null,"Hello Dr."+resultSet.getString(2), "login successful",1);
-                                setVisible(false);
-                                new Prescription();
-                                break;
-                            }
+                    } else if (staffType == "reception") {
+
+                        try {
+                            new AddPatient();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
                         }
 
-                        JOptionPane.showMessageDialog(null,"Invalid username/Password.", "Login Failed",2);
-                        clearMethod();
-                        db.dbClose();
+                    } else if (staffType == "pharmacy") {
 
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
+                        new PharmacyPanel();
+
+                    } else if (staffType == "doctor") {
+                        try {
+                            new Prescription(employeeName);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
                     }
-
                 }
             }
         });
