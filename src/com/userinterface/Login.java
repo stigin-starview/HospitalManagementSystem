@@ -41,6 +41,10 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+        // remove after testing completed.-------------------------------------------------------------------
+        usernameField.setText("stigin");
+        passwordField.setText("doc");
+
 
         loginButton.addActionListener(new ActionListener() {
             @Override

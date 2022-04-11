@@ -196,9 +196,14 @@ public class Database {
         return patientDetails;
     }
 
-    // Add medicine to patient database
-    public addPatientMedicinedb(String medicine) {
-        String query = "UPDATE patients SET medicine = ? WHERE id = ?";
+    public void addPatientPrescription(String id, String medicine, String remarks) throws SQLException {
+        String query = "UPDATE patients SET medicine = ?, remark = ? WHERE id = ?";
+        connectionInit();
+        preStat = db.prepareStatement(query);
+        preStat.setString(1, medicine);
+        preStat.setString(2, remarks);
+        preStat.setString(3, id);
+        preStat.executeUpdate();
 
     }
 
