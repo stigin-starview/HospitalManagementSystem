@@ -34,8 +34,6 @@ public class Database {
 
         }
 
-
-
         // Add employee method
         public void addEmployeeDb(String firstName, String lastName, int age,
                                   String phoneNumber, String email, String id,
@@ -48,7 +46,6 @@ public class Database {
             String query = " INSERT INTO employees VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             // check below 2 lines.
             preStat = db.prepareStatement(query);
-//            this.preStat = preStat;
             preStat.setString(1, id);
             preStat.setString(2, firstName);
             preStat.setString(3, lastName);
@@ -96,25 +93,6 @@ public class Database {
             return doctorsResultSet;
         }
 
-
-
-        // getting count of selected employees //------------------ not working
-//        public ResultSet getEmployeeCountDb(String employee) throws SQLException {
-//            connectionInit();
-//            String query = "SELECT * FROM employees WHERE Department=?";
-//            preStat = db.prepareStatement(query);
-//            preStat.setString(1, employee);
-//            ResultSet employeeCountResultSet = preStat.executeQuery();
-//
-//            employeeCountResultSet.next();
-//            System.out.println(employeeCountResultSet.getRow());
-//            employeeCountResultSet.beforeFirst();
-//            return employeeCountResultSet;
-//
-//    }
-
-    /* Methods for patient Database Functions */
-
     // Adding patient details
     public void addPatientDB(String firstName, String lastName, int age,
                              String phoneNumber, String email, String id,
@@ -123,9 +101,7 @@ public class Database {
 
         // Adding the patients details.
         String query = " INSERT INTO patients VALUES (?,?,?,?,?,?,?,?,?,?)";
-        // check below 2 lines.
         preStat = db.prepareStatement(query);
-//        this.preStat = preStat;
         preStat.setString(1, firstName);
         preStat.setString(2, lastName);
         preStat.setInt(3, age);

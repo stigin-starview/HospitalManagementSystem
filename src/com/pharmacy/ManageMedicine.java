@@ -57,7 +57,6 @@ public class ManageMedicine extends JFrame{
             stockDate = medicinesResultSet.getString(4);
             String[] row = {name, serialNo, noOfMedicines, stockDate};
             tableModel.addRow(row);
-
         }
         db.dbClose();
 

@@ -115,9 +115,6 @@ public class AddPatient extends JFrame{
         ageField.setText("");
         phoneNumberField.setText("");
         emailField.setText("");
-//        idField.setText("");
-//        dateField.setText("");
     }
-
     }
 

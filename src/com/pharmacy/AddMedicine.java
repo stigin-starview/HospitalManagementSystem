@@ -30,9 +30,7 @@ public class AddMedicine extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-
         dateField.setText(db.getDate());
-
 
         addMedicineButton.addActionListener(new ActionListener() {
             @Override

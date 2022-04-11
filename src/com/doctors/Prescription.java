@@ -46,8 +46,8 @@ public class Prescription extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         doctorNameLabel.setText("Dr."+ doctorName);
-        medicineTextArea.append(db.getDate()+"\n");
-        remarksTextArea.append(db.getDate()+"\n");
+//        medicineTextArea.setText(db.getDate()+"\n");
+//        remarksTextArea.setText(db.getDate()+"\n");
 
         //Getting the assigned patient names.
         patientsResultSet = db.getAssignedPatients(doctorName);
@@ -66,22 +66,15 @@ public class Prescription extends JFrame{
         ButtonGroup radioGroup = new ButtonGroup();
         radioGroup.add(beforeFoodRadioButton);
         radioGroup.add(afterFoodRadioButton);
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
 
         // displaying patient details when pressing jcombo box.
         patientNameBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+//                    medicineTextArea.setText(db.getDate()+"");
+//                    remarksTextArea.setText(db.getDate()+"");
                     patientInformation();
-                    medicineTextArea.append(db.getDate()+"\n");
-                    remarksTextArea.append(db.getDate()+"\n");
-
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -113,12 +106,10 @@ public class Prescription extends JFrame{
                     medicineInstruction = medicineInstruction+" night";
                 }
 
-
                 medicineTextArea.append(medicineInstruction+"\n");
                 morningCheckBox.setSelected(false);
                 noonCheckBox.setSelected(false);
                 nightCheckBox.setSelected(false);
-
             }
         });
 
@@ -143,7 +134,6 @@ public class Prescription extends JFrame{
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-
             }
         });
     }
@@ -161,8 +151,22 @@ public class Prescription extends JFrame{
         patientIdLabel.setText("ID: "+patientDetailsResultSet.getString( 1));
         patientAgeLabel.setText("Age: "+patientDetailsResultSet.getString(2));
         patientAdmitDateLabel.setText("Admission Date: "+patientDetailsResultSet.getString(3));
-        medicineTextArea.setText(patientDetailsResultSet.getString(4)+"\n");
-        remarksTextArea.setText(patientDetailsResultSet.getString(5)+"\n");
+        if(patientDetailsResultSet.getString(4) != null) {
+            medicineTextArea.setText(patientDetailsResultSet.getString(4) + "\n");
+            medicineTextArea.append(db.getDate()+"\n");
+        }
+        else{
+            medicineTextArea.setText(db.getDate()+"\n");
+        }
+        if(patientDetailsResultSet.getString(5) != null) {
+            remarksTextArea.setText(patientDetailsResultSet.getString(5) + "\n");
+            remarksTextArea.append(db.getDate()+"\n");
+        }
+        else {
+            remarksTextArea.setText(db.getDate()+"\n");
+        }
+
+
 
         //assigning current patient id to global variable
         this.currentPatientID = patientDetailsResultSet.getString( 1);

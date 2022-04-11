@@ -21,12 +21,11 @@ public class Login extends JFrame {
     private JPanel LoginPanel;
     private String staffType;
 
-    // username and password for testing
+    //master username and password for testing
     private String masterUsername = "root";
     private String masterPassword = "password";
 
     private String username;
-    private String password;
 
     Database db = new Database();
     ResultSet resultSet;
@@ -34,7 +33,6 @@ public class Login extends JFrame {
     public Login(String staffType) {
         this.staffType = staffType;
         setTitle("login");
-//        setSize(1000,600);
         setContentPane(LoginPanel);
         setMinimumSize(new Dimension(1100,600));
         setLocation(500,200);
@@ -44,7 +42,6 @@ public class Login extends JFrame {
         // remove after testing completed.-------------------------------------------------------------------
         usernameField.setText("stigin");
         passwordField.setText("doc");
-
 
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -127,10 +124,6 @@ public class Login extends JFrame {
     private void clearMethod() {
         usernameField.setText("");
         passwordField.setText("");
-    }
-
-    public JPanel getLoginPanel() {
-        return LoginPanel;
     }
 }
 

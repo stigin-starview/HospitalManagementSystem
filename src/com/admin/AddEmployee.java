@@ -30,8 +30,8 @@ public class AddEmployee extends JFrame {
             department, employeeType, date, status, phoneNumber, id;
     private int age;
 
-    Database dat = new Database();
-    ResultSet employeeCountResultSet;
+    private Database dat = new Database();
+    private ResultSet employeeCountResultSet;
 
     public AddEmployee(){
         setTitle("Add Employee");
@@ -129,8 +129,6 @@ public class AddEmployee extends JFrame {
         ageField.setText("");
         phoneField.setText("");
         emailField.setText("");
-//        idField.setText("");
-//        dateField.setText("");
         userNameField.setText("");
         passwordField.setText("");
     }

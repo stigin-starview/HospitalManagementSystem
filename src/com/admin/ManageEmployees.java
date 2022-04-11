@@ -29,7 +29,6 @@ public class ManageEmployees extends JFrame{
             department, employeeType, date, status, phoneNumber, id,age;
 
     private String[] colName;
-    private String[] row;
 
     Database dat = new Database();
     public ManageEmployees() {
@@ -39,8 +38,6 @@ public class ManageEmployees extends JFrame{
         setLocation(500,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
-
-        // WHY THERE IS A SEPERATE FUNCTION?? ( manageEmployeesTable )
 
         try {
             manageEmployeesTable();
@@ -68,8 +65,6 @@ public class ManageEmployees extends JFrame{
         /* after surrounding the table with jscrollpane in the gui form
         the table header started working.*/
        tableModel.setColumnIdentifiers(colName);
-
-
 
         while(employeesResultSet.next()) {
             id = employeesResultSet.getString(1);
