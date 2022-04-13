@@ -1,6 +1,8 @@
 package com.reception;
 
 import com.database.*;
+import com.userinterface.UserInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class AddPatient extends JFrame{
     private JPanel addPatient;
@@ -22,6 +23,7 @@ public class AddPatient extends JFrame{
     private JButton addPatientButton;
     private JButton clearButton;
     private JTextField idField;
+    private JButton homeButton;
 
     private String firstName, lastName, email, date, phoneNumber, id, doctor, medicine, remark;
     private int age;
@@ -92,6 +94,18 @@ public class AddPatient extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearMethod();
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    db.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new UserInterface();
             }
         });
     }

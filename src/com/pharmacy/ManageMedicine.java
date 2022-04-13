@@ -3,15 +3,20 @@ package com.pharmacy;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import com.database.*;
+import com.userinterface.UserInterface;
 
 public class ManageMedicine extends JFrame{
     private JTable medicineTable;
     private JPanel manageMedicinePanel;
+    private JButton backButton;
+    private JButton homeButton;
     private ResultSet medicinesResultSet;
     private ResultSetMetaData medicinesResultSetMd;
 
@@ -32,6 +37,30 @@ public class ManageMedicine extends JFrame{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    db.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new UserInterface();
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    db.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new PharmacyPanel();
+            }
+        });
     }
 
     private void getMedicineList() throws SQLException {

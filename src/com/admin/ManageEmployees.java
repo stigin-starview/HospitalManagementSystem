@@ -5,22 +5,24 @@
 package com.admin;
 
 import com.database.*;
+import com.userinterface.UserInterface;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
-import java.sql.Array;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Locale;
 
 public class ManageEmployees extends JFrame{
     private JTable employeesTable;
     private JPanel manageEmployeesPanel;
     private JButton updateButton;
     private JButton printButton;
+    private JButton backButton;
+    private JButton homeButton;
     private ResultSet employeesResultSet;
     private ResultSetMetaData resultSetMetaData;
 
@@ -45,6 +47,32 @@ public class ManageEmployees extends JFrame{
             e.printStackTrace();
         }
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    dat.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new AdminPanel();
+
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                setVisible(false);
+                try {
+                    dat.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new UserInterface();
+            }
+        });
     }
 
     public void manageEmployeesTable() throws SQLException {

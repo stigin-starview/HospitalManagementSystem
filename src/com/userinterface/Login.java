@@ -19,6 +19,8 @@ public class Login extends JFrame {
     private JButton clearButton;
     private JTextField usernameField;
     private JPanel LoginPanel;
+    private JButton homeButton;
+    private JTextArea FORTESTINGAllAccessTextArea;
     private String staffType;
 
     //master username and password for testing
@@ -117,6 +119,18 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearMethod();
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    db.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new UserInterface();
             }
         });
     }

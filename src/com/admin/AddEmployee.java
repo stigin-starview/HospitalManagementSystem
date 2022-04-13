@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.database.*;
+import com.userinterface.UserInterface;
 
 public class AddEmployee extends JFrame {
     private JPanel addEmployeePanel;
@@ -25,6 +26,8 @@ public class AddEmployee extends JFrame {
     private JTextField passwordField;
     private JComboBox typeBox;
     private JComboBox departmentBox;
+    private JButton backButton;
+    private JButton homeButton;
 
     private String firstName, lastName, email, username, password,
             department, employeeType, date, status, phoneNumber, id;
@@ -120,6 +123,30 @@ public class AddEmployee extends JFrame {
                         idNum = "RECEP_00"+num;
                         idField.setText(idNum);
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    dat.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new AdminPanel();
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    dat.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new UserInterface();
             }
         });
     }

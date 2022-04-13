@@ -1,6 +1,8 @@
 package com.doctors;
 
 import com.database.*;
+import com.userinterface.UserInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,6 +31,7 @@ public class Prescription extends JFrame{
     private JLabel patientAdmitDateLabel;
     private JTextArea medicineTextArea;
     private JTextArea remarksTextArea;
+    private JButton homeButton;
     private JTable remarksTable;
 
     private ResultSet patientsResultSet;
@@ -134,6 +137,18 @@ public class Prescription extends JFrame{
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    db.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new UserInterface();
             }
         });
     }

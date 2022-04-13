@@ -9,9 +9,9 @@ import java.text.ParseException;
 import java.util.Calendar;
 
 public class Database {
-        private Connection db;
-        private Statement stat;
-        private PreparedStatement preStat;
+        private Connection db = null;
+        private Statement stat = null;
+        private PreparedStatement preStat = null;
 
         private String firstName, lastName, email, username, password,
                         department, employeeType, Date, status, phoneNumber, id;
@@ -185,18 +185,21 @@ public class Database {
 
         // close all the opened databases.
         public void dbClose() throws SQLException {
+            if( db != null) {
+                if (this.stat == null && this.preStat == null) {
+                    db.close();
+                } else if (this.stat == null) {
+                    preStat.close();
+                    db.close();
+                } else if (this.preStat == null) {
+                    stat.close();
+                    db.close();
 
-            if(this.stat == null) {
-                preStat.close();
-                db.close();
-            }
-            else if (this.stat == null || this.preStat == null) {
-                db.close();
-            }
-            else {
-                stat.close();
-                preStat.close();
-                db.close();
+                } else {
+                    stat.close();
+                    preStat.close();
+                    db.close();
+                }
             }
         }
 

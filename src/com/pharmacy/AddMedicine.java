@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import com.database.*;
+import com.userinterface.UserInterface;
 
 public class AddMedicine extends JFrame{
     private JTextField medicineField;
@@ -16,6 +17,8 @@ public class AddMedicine extends JFrame{
     private JButton addMedicineButton;
     private JButton clearButton;
     private JPanel addMedicinePanel;
+    private JButton backButton;
+    private JButton homeButton;
 
     private String name, serialNo, stockDate;
     private int noOfMedicines;
@@ -57,6 +60,31 @@ public class AddMedicine extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearMethod();
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    db.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new PharmacyPanel();
+            }
+
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                try {
+                    db.dbClose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                new UserInterface();
             }
         });
     }

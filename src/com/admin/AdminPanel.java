@@ -1,5 +1,7 @@
 package com.admin;
 
+import com.userinterface.UserInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,7 @@ public class AdminPanel extends JFrame{
     private JButton manageEmployeesButton;
     private JButton adminSettingsButton;
     private JPanel AdminPanel;
+    private JButton homeButton;
 
     public AdminPanel() {
         setTitle("Administrator Controls");
@@ -33,6 +36,19 @@ public class AdminPanel extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 new ManageEmployees();
+            }
+        });
+        adminSettingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Functions are not implemented. please contact technical support.", "Work in progress",1);
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new UserInterface();
             }
         });
     }

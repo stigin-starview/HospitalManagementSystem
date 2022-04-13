@@ -1,14 +1,18 @@
 package com.pharmacy;
 
+import com.userinterface.UserInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class PharmacyPanel extends JFrame{
     private JButton addMedicineButton;
     private JPanel pharmacyPanel;
     private JButton listMedicineButton;
+    private JButton homeButton;
 
     public PharmacyPanel() {
         setTitle("Pharmacy");
@@ -30,6 +34,13 @@ public class PharmacyPanel extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 new ManageMedicine();
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new UserInterface();
             }
         });
     }
