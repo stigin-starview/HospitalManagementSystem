@@ -74,6 +74,7 @@ public class AddEmployee extends JFrame {
                     dat.addEmployeeDb(firstName, lastName, age, phoneNumber, email, id, department,
                                         employeeType, date, status, username, password);
                 } catch (SQLException ex) {
+					// Make the error message detailed
                     ex.printStackTrace();
                 }
 
