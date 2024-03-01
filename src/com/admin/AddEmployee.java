@@ -61,6 +61,7 @@ public class AddEmployee extends JFrame {
                 lastName = secondNameField.getText();
                 email = emailField.getText();
                 username = userNameField.getText();
+				// Use Password hashing algorithm - secure store
                 password = passwordField.getText();
                 department = departmentBox.getSelectedItem().toString();
                 employeeType = typeBox.getSelectedItem().toString();
